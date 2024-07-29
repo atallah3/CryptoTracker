@@ -9,11 +9,7 @@ import Foundation
 
 
 extension Double {
-    
-    #warning("Maybe logical error here")
-    
-    
-    
+  
     /// converts a double into currency with 2  decimal places
     /// ```
     /// 1234.56 -> $1,234.56
