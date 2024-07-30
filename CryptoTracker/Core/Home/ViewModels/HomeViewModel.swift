@@ -14,6 +14,7 @@ class HomeViewModel: ObservableObject {
     
     let dataService = CoinDataService()
     var cancellabels = Set<AnyCancellable>()
+    
     init() {
         addSubscribers()
     }
