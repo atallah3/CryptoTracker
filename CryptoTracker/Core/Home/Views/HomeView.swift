@@ -21,6 +21,8 @@ struct HomeView: View {
             VStack {
                 homeHeader
                 
+                SearchBarView(searchText: $vm.searchText)
+                
                 columnTitle
                 
                 if !showPortfolio {
@@ -41,6 +43,14 @@ struct HomeView: View {
 #Preview {
     NavigationStack{
         HomeView()
+            .toolbar(.hidden)
+            .environmentObject(DeveloperProvider.shared.homeVM)
+    }
+}
+#Preview {
+    NavigationStack{
+        HomeView()
+            .preferredColorScheme(.dark)
             .toolbar(.hidden)
             .environmentObject(DeveloperProvider.shared.homeVM)
     }
