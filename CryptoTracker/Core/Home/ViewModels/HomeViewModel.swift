@@ -8,17 +8,14 @@
 import Foundation
 import Combine
 class HomeViewModel: ObservableObject {
-    @Published var statistics: [StatisticModel] = [
-        StatisticModel(title: "Title", value: "Value"),
-        StatisticModel(title: "Title 1", value: "Value 1", percentageChange: 1.23),
-        StatisticModel(title: "Title 2", value: "Value 2", percentageChange: -0.45),
-        StatisticModel(title: "Title 3", value: "Value 3", percentageChange: 0.00)
-    ]
+    @Published var statistics: [StatisticModel] = []
     @Published var allCoins: [CoinModel] = []
     @Published var portfolioCoins: [CoinModel] = []
     @Published var searchText: String = ""
+    @Published var marketData: MarketDataModel?
     
-    let dataService = CoinDataService()
+    let coinDataService = CoinDataService()
+    let marketDataService = MarketDataService()
     var cancellabels = Set<AnyCancellable>()
     
     init() {
@@ -28,7 +25,7 @@ class HomeViewModel: ObservableObject {
     func addSubscribers() {
         
         $searchText
-            .combineLatest(dataService.$allCoins)
+            .combineLatest(coinDataService.$allCoins)
             .debounce(for: .seconds(0.3), scheduler: DispatchQueue.main)
             .map( filterCoins )
             .sink { [weak self] returnedData in
@@ -36,6 +33,17 @@ class HomeViewModel: ObservableObject {
             }
             .store(in: &cancellabels)
         
+        marketDataService.$marketData
+            .compactMap { $0?.data }
+            .sink { [weak self] returnedData in
+                self?.marketData = returnedData
+                self?.addStatisticsValue()
+            }
+            .store(in: &cancellabels)
+    }
+    
+    func addStatisticsValue() {
+        self.statistics.append(StatisticModel(title: "Market Cap", value: "\(self.marketData?.marketCap ?? "0")"))
     }
     
     private func filterCoins(searchText: String, coins: [CoinModel]) -> [CoinModel] {

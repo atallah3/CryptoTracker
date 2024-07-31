@@ -30,6 +30,8 @@
 		F78038812C5911F400A3753E /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78038802C5911F400A3753E /* UIApplication.swift */; };
 		F7ABF9D92C57F1AB00EC3DF7 /* CoinDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ABF9D82C57F1AB00EC3DF7 /* CoinDataService.swift */; };
 		F7ABF9DC2C580ECD00EC3DF7 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ABF9DB2C580ECD00EC3DF7 /* NetworkingManager.swift */; };
+		F7B686E72C5A71C000D26545 /* MarketDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B686E62C5A71C000D26545 /* MarketDataModel.swift */; };
+		F7B686E92C5A792000D26545 /* MarketDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B686E82C5A792000D26545 /* MarketDataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,8 @@
 		F78038802C5911F400A3753E /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		F7ABF9D82C57F1AB00EC3DF7 /* CoinDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDataService.swift; sourceTree = "<group>"; };
 		F7ABF9DB2C580ECD00EC3DF7 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
+		F7B686E62C5A71C000D26545 /* MarketDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDataModel.swift; sourceTree = "<group>"; };
+		F7B686E82C5A792000D26545 /* MarketDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDataService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +135,7 @@
 			children = (
 				F744C7C52C521BE2000CA131 /* CoinModel.swift */,
 				F743908D2C5A41220067F7A2 /* StatisticModel.swift */,
+				F7B686E62C5A71C000D26545 /* MarketDataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -199,6 +204,7 @@
 			children = (
 				F7ABF9D82C57F1AB00EC3DF7 /* CoinDataService.swift */,
 				F780387A2C58998F00A3753E /* CoinImageDataService.swift */,
+				F7B686E82C5A792000D26545 /* MarketDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -283,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F743908E2C5A41220067F7A2 /* StatisticModel.swift in Sources */,
+				F7B686E92C5A792000D26545 /* MarketDataService.swift in Sources */,
 				F78038812C5911F400A3753E /* UIApplication.swift in Sources */,
 				F78038772C5897FD00A3753E /* CoinImageView.swift in Sources */,
 				F73B35E62C53D2A6003633B9 /* CoinRowView.swift in Sources */,
@@ -295,6 +302,7 @@
 				F744C7C12C51FC23000CA131 /* CircleButtonView.swift in Sources */,
 				F744C7C62C521BE2000CA131 /* CoinModel.swift in Sources */,
 				F73B35E42C53D1A3003633B9 /* PreviewProvider.swift in Sources */,
+				F7B686E72C5A71C000D26545 /* MarketDataModel.swift in Sources */,
 				F738185E2C574377004372F4 /* Double.swift in Sources */,
 				F743908C2C5A410B0067F7A2 /* StatisticView.swift in Sources */,
 				F7ABF9DC2C580ECD00EC3DF7 /* NetworkingManager.swift in Sources */,
