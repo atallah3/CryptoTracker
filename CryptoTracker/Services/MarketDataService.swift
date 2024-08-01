@@ -9,7 +9,7 @@ import Foundation
 import Combine
 class MarketDataService {
     
-    @Published var marketData: GlobalData?
+    @Published var marketData:  MarketDataModel? = nil
     var marketCancellable: AnyCancellable?
     init() {
         getMarketData()
@@ -23,8 +23,9 @@ class MarketDataService {
             .sink(receiveCompletion: { completion in
                 NetworkingManager.handleCompletion(completion: completion)
             }, receiveValue: { [weak self] returnedData in
-                self?.marketData = returnedData
-            })
+                self?.marketData = returnedData.data
+                self?.marketCancellable?.cancel()
+            })  
         
     }
 }

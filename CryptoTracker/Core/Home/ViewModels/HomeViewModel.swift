@@ -12,7 +12,6 @@ class HomeViewModel: ObservableObject {
     @Published var allCoins: [CoinModel] = []
     @Published var portfolioCoins: [CoinModel] = []
     @Published var searchText: String = ""
-    @Published var marketData: MarketDataModel?
     
     let coinDataService = CoinDataService()
     let marketDataService = MarketDataService()
@@ -34,16 +33,11 @@ class HomeViewModel: ObservableObject {
             .store(in: &cancellabels)
         
         marketDataService.$marketData
-            .compactMap { $0?.data }
+            .map( mapGlobalMarketData )
             .sink { [weak self] returnedData in
-                self?.marketData = returnedData
-                self?.addStatisticsValue()
+                self?.statistics = returnedData
             }
             .store(in: &cancellabels)
-    }
-    
-    func addStatisticsValue() {
-        self.statistics.append(StatisticModel(title: "Market Cap", value: "\(self.marketData?.marketCap ?? "0")"))
     }
     
     private func filterCoins(searchText: String, coins: [CoinModel]) -> [CoinModel] {
@@ -58,5 +52,21 @@ class HomeViewModel: ObservableObject {
             coin.id.lowercased().contains(lowercasedText) ||
             coin.symbol.lowercased().contains(lowercasedText)
         }
+    }
+    
+    private func mapGlobalMarketData(marketDataModel: MarketDataModel?) -> [StatisticModel] {
+        var stats: [StatisticModel] = []
+        
+        guard let data = marketDataModel else {
+            return stats
+        }
+        
+        let marketCap = StatisticModel(title: "Market Cap", value: data.marketCap, percentageChange: data.marketCapChangePercentage24HUsd)
+        let volume = StatisticModel(title: "24h Volume", value: data.volume)
+        let btcDominance = StatisticModel(title: "BTC Dominance", value: data.btcDominance)
+        let portofolio = StatisticModel(title: "Portfolio Value", value: "$0.0", percentageChange: 0.0)
+        
+        stats.append(contentsOf: [ marketCap, volume, btcDominance, portofolio])
+        return stats
     }
 }
