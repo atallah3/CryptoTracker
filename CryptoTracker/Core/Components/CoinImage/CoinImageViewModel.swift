@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+
 class CoinImageViewModel: ObservableObject {
     
     @Published var image: UIImage? = nil

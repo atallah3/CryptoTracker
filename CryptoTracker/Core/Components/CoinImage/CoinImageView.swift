@@ -10,7 +10,6 @@ import SwiftUI
 struct CoinImageView: View {
     
     @StateObject var vm: CoinImageViewModel
-    
     let coin: CoinModel
     
     init(coin: CoinModel) {
